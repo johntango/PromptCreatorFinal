@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 const app = express();
 const port = 3031;
-import fs from 'fs';
+
 import OpenAI from 'openai' ;
 import bodyParser from 'body-parser'   // really important otherwise the body of the request is empty
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,35 +11,6 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 // get OPENAI_API_KEY from GitHub secrets uncomment the following lines
 
-
-// get the API key from the json file
-var openai= null;
-fs.readFile('openai_key.json', (err, data) => {
-  // change the data to a json object and assign it to the openai variable
-  data = JSON.parse(data);
-  // get the api key from the json object
-  let key = data.apiKey;
-  console.log("data:"+data)
-  console.log(key)
-  openai = new OpenAI({apiKey: key});
-});
-
-
-
-
-// use below if runnning locally and not using GitHub secrets
-async function getKey(){
-
-  fs.readFile('openai_key.json', (err, data) => {
-    // change the data to a json object and assign it to the openai variable
-    data = JSON.parse(data);
-    // get the api key from the json object
-    let key = data.apiKey;
-    console.log(key)
-    let client = new OpenAI({apiKey: key});
-    return client;
-  });
-}
 const client = new OpenAI({apiKey: OPENAI_API_KEY});
 // Middleware to parse JSON payloads in POST requests
 app.use(express.json());
