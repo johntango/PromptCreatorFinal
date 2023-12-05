@@ -57,7 +57,6 @@ app.get('/', (req, res) => {
     res.sendFile(filePath);
 })
 
-<<<<<<< HEAD
 app.post('/prompt', async(req, res) => {
   // get the values from the request 
   console.log(JSON.stringify(req.body));
@@ -67,13 +66,6 @@ app.post('/prompt', async(req, res) => {
   const language = req.body.language;
   console.log("topic: " + topic)
 
-=======
-app.post('/test-prompt', async(req, res) => {
-  // get full path to popup.html
-  console.log("Action: "+ JSON.stringify(req.body));
-  let topic = req.body.prompt;
-  let sentiment = req.body.sentiment;
->>>>>>> 8de4b110ab0c48c7efc9bc15687590c8689d3246
   try {
     let prompt = "Write aproximately 100 word article on this topic: " + topic + " using this sentiment: " + sentiment;
 
